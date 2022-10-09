@@ -30,15 +30,12 @@ class SimplePerceptron:
         return self.__y_train - predictions
 
     def __get_accuracy(self, expected, predictions) -> float:
-        # transformed = self.__mapping(predictions)
-        # total = expected.shape[1]
-        mean = np.mean(expected == predictions)
+        transformed = self.__mapping(predictions)
+        # print(predictions[..., :10])
+        # print(transformed[..., :10])
+        # print(expected[..., :10])
+        mean = np.mean(expected == transformed)
         return float(mean)
-        # counter = 0
-        # for pred, exp in zip(transformed[0], expected[0]):
-        #     if pred == exp:
-        #         counter += 1
-        # return counter / total
 
     def train_model(self, iterations, learning_rate: float):
         activation = np.zeros(self.__y_train.shape[1])
@@ -46,7 +43,8 @@ class SimplePerceptron:
             current_cost = self.__cost(self.__weights, self.__x_train)
             activation = self.__activation(current_cost)
             error = self.__error(activation)
-            dw = self.__act_derivative(error).dot(self.__x_train.T)
+            # dw = self.__act_derivative(error).dot(self.__x_train.T)
+            dw = error.dot(self.__x_train.T)
             db = np.sum(self.__act_derivative(error)) / self.__x_train.shape[1]
             #delta = self.__gradient(activation, self.__y_train, self.__x_train)
             self.__weights = self.__weights + learning_rate * dw

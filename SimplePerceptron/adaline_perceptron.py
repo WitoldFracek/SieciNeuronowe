@@ -1,6 +1,8 @@
 import numpy as np
 import random
 
+import numpy.random
+
 
 class Adaline:
     def __init__(self, x_train: np.ndarray, y_train: np.ndarray, input_size: int, output_size: int,
