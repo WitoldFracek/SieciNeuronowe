@@ -29,6 +29,11 @@ def output_mapping(threshold: float = 0.5):
         return 1 if value > threshold else 0
     return np.vectorize(inner)
 
+
+@np.vectorize
+def signum_mapping(value):
+    return 1 if value > 0 else 0
+
 # @np.vectorize
 # def unipolar_activation(value: float, theta=0) -> int:
 #     return 1 if value > theta else 0
