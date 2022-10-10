@@ -36,12 +36,12 @@ class Adaline:
         cost = np.zeros(self.__y_train.shape[1])
         for i in range(iterations):
             cost = self.__cost(self.__weights, self.__x_train)
-            print("Cost", cost)
+            # print("Cost", cost)
             error = self.__err(self.__y_train, cost)
             err = self.__square_err(self.__y_train, cost)
-            print(error)
-            print(err)
-            input()
+            # print("Error matrix", error)
+            # print("Mean error: ", err)
+            # input()
             dw = error.dot(self.__x_train.T)
             self.__weights = self.__weights + learning_rate * dw
         self.__train_accuracy = self.__get_train_accuracy(self.__y_train, cost)

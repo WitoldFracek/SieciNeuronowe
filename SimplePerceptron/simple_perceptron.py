@@ -5,7 +5,7 @@ import random
 class SimplePerceptron:
     def __init__(self, x_train: np.ndarray, y_train: np.ndarray, activation_function, gradient, output_mapping=lambda x: x):
         self.__weights = np.zeros(1)
-        self.__bias = random.random()
+        self.__bias = 0 #random.random()
         self.__x_train = x_train
         self.__y_train = y_train
         self.__init_weights(x_train.shape[0])
@@ -19,6 +19,7 @@ class SimplePerceptron:
 
     def __init_weights(self, input_size: int):
         self.__weights = np.random.randn(1, input_size) * 0.001
+        # self.__weights = (np.random.random((1, input_size)) * 2 - 1) * 0.001
 
     def __cost(self, w, x):
         return w.dot(x) + self.__bias
@@ -31,9 +32,6 @@ class SimplePerceptron:
 
     def __get_accuracy(self, expected, predictions) -> float:
         transformed = self.__mapping(predictions)
-        # print(predictions[..., :10])
-        # print(transformed[..., :10])
-        # print(expected[..., :10])
         mean = np.mean(expected == transformed)
         return float(mean)
 
@@ -43,12 +41,10 @@ class SimplePerceptron:
             current_cost = self.__cost(self.__weights, self.__x_train)
             activation = self.__activation(current_cost)
             error = self.__error(activation)
-            # dw = self.__act_derivative(error).dot(self.__x_train.T)
             dw = error.dot(self.__x_train.T)
-            db = np.sum(self.__act_derivative(error)) / self.__x_train.shape[1]
-            #delta = self.__gradient(activation, self.__y_train, self.__x_train)
+            # db = np.sum(self.__act_derivative(error)) / self.__x_train.shape[1]
             self.__weights = self.__weights + learning_rate * dw
-            self.__bias = self.__bias + learning_rate * db
+            # self.__bias = self.__bias + learning_rate * db
         self.__accuracy = self.__get_accuracy(self.__y_train, activation)
         self.__is_trained = True
 

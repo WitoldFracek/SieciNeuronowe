@@ -1,11 +1,11 @@
 from adaline_perceptron import Adaline
-from adaline_utils import generate_training_set, output_mapping
-from perceptron_utils import AND_VALUES, OR_VALUES, XOR_VALUES
+from adaline_utils import output_mapping
+from perceptron_utils import AND_VALUES, OR_VALUES, XOR_VALUES, generate_training_set
 
-SET_SIZE = 10
+SET_SIZE = 1000
 TRAIN_PERCENTAGE = 0.8
-ITERATIONS = 10_000
-ALPHA = 0.2
+ITERATIONS = 1000
+ALPHA = 0.001
 
 if __name__ == '__main__':
     train_last_index = int(SET_SIZE * TRAIN_PERCENTAGE)
@@ -15,6 +15,7 @@ if __name__ == '__main__':
     adaline = Adaline(x_train, y_train, input_size=3, output_size=1, output_mapping=output_mapping())
     adaline.train(ITERATIONS, ALPHA)
     print(adaline.train_accuracy)
+    print(adaline.weights)
 
 
 
