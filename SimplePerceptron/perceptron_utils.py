@@ -1,12 +1,20 @@
+from enum import Enum
+
 import numpy as np
 import random
+
 
 AND_VALUES = [(0, 0, 0), (0, 1, 0), (1, 0, 0), (1, 1, 1)]
 OR_VALUES = [(0, 0, 0), (0, 1, 1), (1, 0, 1), (1, 1, 1)]
 XOR_VALUES = [(0, 0, 0), (0, 1, 1), (1, 0, 1), (1, 1, 0)]
 
 
-def generate_training_set(size, logic_values):  # removed bias
+class ActFun(Enum):
+    UNIPOLAR = 1
+    BIPOLAR = 2
+
+
+def generate_training_set(size, logic_values):
     ret_x = [np.array((1, x1, x2)) for x1, x2, _ in logic_values]
     ret_y = [y for _, _, y in logic_values]
     for _ in range(size - 4):
@@ -30,5 +38,5 @@ def bipolar_activation(value: float, theta=0) -> int:
     return 1 if value > theta else -1
 
 
-def step_function_delta(predicted: np.ndarray, expected: np.ndarray, x: np.ndarray):
-    return (expected - predicted).dot(x.T)
+# def step_function_delta(predicted: np.ndarray, expected: np.ndarray, x: np.ndarray):
+#     return (expected - predicted).dot(x.T)
