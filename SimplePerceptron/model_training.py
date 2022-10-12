@@ -16,7 +16,7 @@ ACT_FUNCTIONS = {
 
 def main():
     train_last_index = int(SET_SIZE * TRAIN_PERCENTAGE)
-    x_ext, y_ext = generate_training_set(SET_SIZE, AND_VALUES)
+    x_ext, y_ext = generate_training_set(SET_SIZE, XOR_VALUES)
     x_train, x_test = x_ext[..., :train_last_index], x_ext[..., train_last_index:]
     y_train, y_test = y_ext[..., :train_last_index], y_ext[..., train_last_index:]
     act_fun, mapping = ACT_FUNCTIONS[ACT_FUN]

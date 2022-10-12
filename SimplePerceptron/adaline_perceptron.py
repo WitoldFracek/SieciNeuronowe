@@ -51,6 +51,7 @@ class Adaline:
             # input()
             dw = error.dot(self.__x_train.T) * 2
             self.__weights = self.__weights + learning_rate * dw
+            # self.__weights = self.__weights / self.__weights[0][0]
         self.__train_accuracy = self.__get_accuracy(self.__y_train, cost)
 
     def test(self, x_test, y_test):
