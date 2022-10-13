@@ -5,8 +5,8 @@ from perceptron_utils import *
 SET_SIZE = 100
 TRAIN_PERCENTAGE = 0.8
 ALPHA = 0.2
-ACT_FUN = ActFun.BIPOLAR
-WEIGHT_RANGE = 1
+ACT_FUN = ActFun.UNIPOLAR
+WEIGHT_RANGE = 0.1
 SHOW_PLOT = True
 
 

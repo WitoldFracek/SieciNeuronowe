@@ -52,6 +52,9 @@ class Adaline:
                 self.__idle_error += 1
             if self.__idle_error > 10:
                 print(f"{color.Color.FG.RED}Break! Too many iterations without error change.{color.Color.END}")
+                print(f"{color.Color.FG.RED}Current minimal error: {sqr_err:.3f}{color.Color.END}")
+                print(f"{color.Color.FG.RED}Given minimal error:   {min_error:.3f}{color.Color.END}")
+                print(f"{color.Color.FG.RED}{sqr_err:.3f} > {min_error:.3f}{color.Color.END}")
                 break
             dw = error.dot(self.__x_train.T)
             self.__weights = self.__weights + learning_rate * dw

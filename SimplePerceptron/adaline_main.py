@@ -4,10 +4,10 @@ from perceptron_utils import AND_VALUES, OR_VALUES, XOR_VALUES, generate_trainin
 
 SET_SIZE = 1000
 TRAIN_PERCENTAGE = 0.8
-MIN_ERR = 0.25
+MIN_ERR = 0.1
 ALPHA = 0.001
 WEIGHT_RANGE = 0.03
-SHOW_PLOT = False
+SHOW_PLOT = True
 
 
 def main():
