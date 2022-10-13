@@ -39,13 +39,14 @@ def bipolar_activation(value: float, theta=0) -> int:
     return 1 if value > theta else -1
 
 
-def plot_result(x: np.ndarray, y: np.ndarray, w: np.ndarray):
+def plot_result(x: np.ndarray, y: np.ndarray, w: np.ndarray, plot_range=(0, 1)):
     for i in range(x.shape[1]):
         if y[0][i] == 1:
             pyl.scatter([x[2][i]], [x[1][i]], c='b')
         else:
             pyl.scatter([x[2][i]], [x[1][i]], c='r')
-    x_all = np.linspace(-0.25, 1.25, 10)
-    pyl.plot(x_all, (-w[1] * x_all - w[0]) / w[2])
+    plot_min, plot_max = plot_range
+    x_all = np.linspace(plot_min, plot_max, 10)
+    pyl.plot(x_all, -w[1] / w[2] * x_all - w[0] / w[2])
     pyl.show()
 

@@ -3,33 +3,37 @@ import random
 
 import numpy.random
 
+import color
+
 
 class Adaline:
     def __init__(self, x_train: np.ndarray, y_train: np.ndarray, input_size: int, output_size: int,
-                 output_mapping=lambda x: x):
+                 output_mapping=lambda x: x, init_weight_range=1):
         self.__x_train = x_train
-        self.__y_train = y_train
+        self.__y_train = np.vectorize(output_mapping)(y_train)
         self.__set_size = x_train.shape[1]
-        self.__weights = self.__init_weights(input_size, output_size)
+        self.__weights = self.__init_weights(input_size, output_size, init_weight_range)
         self.__output_map = np.vectorize(output_mapping)
         self.__train_accuracy = 0
         self.__test_accuracy = 0
         self.__training_iterations = 0
+        self.__idle_error = 0
+        self.__last_error = 1e10
 
-    def __init_weights(self, input_size, output_size):
-        return np.random.randn(output_size, input_size) * 0.01
+    def __init_weights(self, input_size, output_size, weights_range):
+        return (np.random.random((output_size, input_size)) - 0.5) * weights_range
 
     def __cost(self, weights: np.ndarray, x: np.ndarray) -> np.ndarray:
         return weights.dot(x)
 
     def __square_err(self, expected: np.ndarray, predicted: np.ndarray) -> np.ndarray:
-        return np.mean(np.square(expected - self.__output_map(predicted)))
+        return np.mean(np.square(expected - predicted))
 
     def __err(self, expected: np.ndarray, predicted: np.ndarray) -> np.ndarray:
-        return expected - self.__output_map(predicted)
+        return expected - predicted
 
     def __get_accuracy(self, expected: np.ndarray, predicted: np.ndarray) -> float:
-        transformed = self.__output_map(predicted)
+        transformed = np.sign(predicted)
         mean = np.mean(expected[0] == transformed[0])
         return float(mean)
 
@@ -41,6 +45,14 @@ class Adaline:
             cost = self.__cost(self.__weights, self.__x_train)
             error = self.__err(self.__y_train, cost)
             sqr_err = self.__square_err(self.__y_train, cost)
+            if sqr_err < self.__last_error:
+                self.__last_error = sqr_err
+                self.__idle_error = 0
+            else:
+                self.__idle_error += 1
+            if self.__idle_error > 10:
+                print(f"{color.Color.FG.RED}Break! Too many iterations without error change.{color.Color.END}")
+                break
             dw = error.dot(self.__x_train.T)
             self.__weights = self.__weights + learning_rate * dw
         self.__train_accuracy = self.__get_accuracy(self.__y_train, cost)

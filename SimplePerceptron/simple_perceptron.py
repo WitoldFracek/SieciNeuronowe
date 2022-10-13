@@ -1,17 +1,18 @@
 import numpy as np
-import random
+
+import color
 
 
 class SimplePerceptron:
     def __init__(self, x_train: np.ndarray, y_train: np.ndarray, activation_function, activation_theta=0.0,
-                 input_mapping=lambda x: x):
+                 input_mapping=lambda x: x, output_mapping=lambda x: x, weight_range=1):
         self.__weights = np.zeros(1)
         self.__theta = activation_theta
-        self.__x_train = x_train
-        self.__init_weights(x_train.shape[0])
+        self.__x_train = np.vectorize(input_mapping)(x_train)
+        self.__y_train = np.vectorize(output_mapping)(y_train)
+        self.__init_weights(x_train.shape[0], weight_range)
         self.__act_function = activation_function
         self.__mapping = np.vectorize(input_mapping)
-        self.__y_train = self.__mapping(y_train)
         self.__is_trained = False
         self.__accuracy = 0
         self.__iterations = 0
@@ -19,9 +20,8 @@ class SimplePerceptron:
         self.__last_error = 1e10
         self.__idle_error = 0
 
-    def __init_weights(self, input_size: int):
-        self.__weights = np.random.randn(1, input_size) * 0.001
-        self.__weights = np.full((1, input_size), 1)
+    def __init_weights(self, input_size: int, weight_range):
+        self.__weights = (np.random.random((1, input_size)) - 0.5) * weight_range
 
     def __cost(self, w, x):
         return w.dot(x)
@@ -49,6 +49,7 @@ class SimplePerceptron:
             else:
                 self.__idle_error += 1
             if self.__idle_error > 10:
+                print(f"{color.Color.FG.RED}Break! Too many iterations without error change.{color.Color.END}")
                 break
             dw = error.dot(self.__x_train.T)
             self.__weights = self.__weights + learning_rate * dw
