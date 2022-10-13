@@ -21,6 +21,7 @@ class SimplePerceptron:
 
     def __init_weights(self, input_size: int):
         self.__weights = np.random.randn(1, input_size) * 0.001
+        self.__weights = np.full((1, input_size), 1)
 
     def __cost(self, w, x):
         return w.dot(x)
@@ -32,7 +33,6 @@ class SimplePerceptron:
         return self.__y_train - predictions
 
     def __get_accuracy(self, expected, predictions) -> float:
-        # transformed = self.__mapping(predictions)
         mean = np.mean(expected == predictions)
         return float(mean)
 
@@ -45,6 +45,7 @@ class SimplePerceptron:
             mean_error = np.mean(error)
             if mean_error < self.__last_error:
                 self.__last_error = mean_error
+                self.__idle_error = 0
             else:
                 self.__idle_error += 1
             if self.__idle_error > 10:

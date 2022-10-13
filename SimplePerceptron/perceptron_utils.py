@@ -2,6 +2,7 @@ from enum import Enum
 
 import numpy as np
 import random
+import matplotlib.pyplot as pyl
 
 
 AND_VALUES = [(0, 0, 0), (0, 1, 0), (1, 0, 0), (1, 1, 1)]
@@ -38,5 +39,13 @@ def bipolar_activation(value: float, theta=0) -> int:
     return 1 if value > theta else -1
 
 
-# def step_function_delta(predicted: np.ndarray, expected: np.ndarray, x: np.ndarray):
-#     return (expected - predicted).dot(x.T)
+def plot_result(x: np.ndarray, y: np.ndarray, w: np.ndarray):
+    for i in range(x.shape[1]):
+        if y[0][i] == 1:
+            pyl.scatter([x[2][i]], [x[1][i]], c='b')
+        else:
+            pyl.scatter([x[2][i]], [x[1][i]], c='r')
+    x_all = np.linspace(-0.25, 1.25, 10)
+    pyl.plot(x_all, (-w[1] * x_all - w[0]) / w[2])
+    pyl.show()
+
