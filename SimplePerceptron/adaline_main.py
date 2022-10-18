@@ -12,7 +12,7 @@ SHOW_PLOT = True
 
 def main():
     train_last_index = int(SET_SIZE * TRAIN_PERCENTAGE)
-    x_ext, y_ext = generate_set(SET_SIZE, AND_VALUES)
+    x_ext, y_ext = generate_set(SET_SIZE, XOR_VALUES)
     x_train, x_test = x_ext[..., :train_last_index], x_ext[..., train_last_index:]
     y_train, y_test = y_ext[..., :train_last_index], y_ext[..., train_last_index:]
     adaline = Adaline(x_train, y_train, input_size=3, output_size=1, output_mapping=lambda x: 1 if x > 0 else -1)
@@ -29,7 +29,7 @@ def main():
     print(adaline.test_one_sample(0, 0))
     print(f"\nTest accuracy: -- {adaline.train_accuracy}")
     if SHOW_PLOT:
-        plot_result(x_train, y_train, weights, title="Adaline\nAND values")
+        plot_result(x_train, y_train, weights, title="Adaline\nXOR values")
 
 
 if __name__ == '__main__':
