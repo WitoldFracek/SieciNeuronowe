@@ -1,18 +1,18 @@
 import color
 from adaline_perceptron import Adaline
-from perceptron_utils import AND_VALUES, OR_VALUES, XOR_VALUES, generate_training_set, plot_result
+from perceptron_utils import AND_VALUES, OR_VALUES, XOR_VALUES, generate_set, plot_result
 
-SET_SIZE = 1000
+SET_SIZE = 100
 TRAIN_PERCENTAGE = 0.8
 MIN_ERR = 0.1
-ALPHA = 0.001
-WEIGHT_RANGE = 0.03
+ALPHA = 0.01
+WEIGHT_RANGE = 0.1
 SHOW_PLOT = True
 
 
 def main():
     train_last_index = int(SET_SIZE * TRAIN_PERCENTAGE)
-    x_ext, y_ext = generate_training_set(SET_SIZE, OR_VALUES)
+    x_ext, y_ext = generate_set(SET_SIZE, AND_VALUES)
     x_train, x_test = x_ext[..., :train_last_index], x_ext[..., train_last_index:]
     y_train, y_test = y_ext[..., :train_last_index], y_ext[..., train_last_index:]
     adaline = Adaline(x_train, y_train, input_size=3, output_size=1, output_mapping=lambda x: 1 if x > 0 else -1)
@@ -26,9 +26,10 @@ def main():
     print(f"Iterations: ----- {adaline.iterations}")
     print(f"Weights: -------- {weights[0]:.2f} | {weights[1]:.2f} | {weights[2]:.2f}")
     adaline.test(x_test, y_test)
+    print(adaline.test_one_sample(0, 0))
     print(f"\nTest accuracy: -- {adaline.train_accuracy}")
     if SHOW_PLOT:
-        plot_result(x_train, y_train, weights)
+        plot_result(x_train, y_train, weights, title="Adaline\nAND values")
 
 
 if __name__ == '__main__':

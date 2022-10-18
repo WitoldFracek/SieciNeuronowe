@@ -5,7 +5,7 @@ from perceptron_utils import *
 SET_SIZE = 100
 TRAIN_PERCENTAGE = 0.8
 ALPHA = 0.2
-ACT_FUN = ActFun.UNIPOLAR
+ACT_FUN = ActFun.BIPOLAR
 WEIGHT_RANGE = 0.1
 SHOW_PLOT = True
 
@@ -18,7 +18,7 @@ ACT_FUNCTIONS = {
 
 def main():
     train_last_index = int(SET_SIZE * TRAIN_PERCENTAGE)
-    x_ext, y_ext = generate_training_set(SET_SIZE, AND_VALUES)
+    x_ext, y_ext = generate_set(SET_SIZE, XOR_VALUES)
     x_train, x_test = x_ext[..., :train_last_index], x_ext[..., train_last_index:]
     y_train, y_test = y_ext[..., :train_last_index], y_ext[..., train_last_index:]
     act_fun, input_mapping, output_mapping = ACT_FUNCTIONS[ACT_FUN]
@@ -40,8 +40,8 @@ def main():
         plot_result(np.vectorize(input_mapping)(x_train),
                     np.vectorize(output_mapping)(y_train),
                     weights,
-                    plot_range=(-1.25, 1.25) if ACT_FUN == ActFun.BIPOLAR else (-0.25, 1.25)
-                    )
+                    plot_range=(-1.25, 1.25) if ACT_FUN == ActFun.BIPOLAR else (-0.25, 1.25),
+                    title="Bipolar perceptron\nXOR values")
 
 
 if __name__ == '__main__':
