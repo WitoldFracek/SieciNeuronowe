@@ -61,6 +61,10 @@ class Layer:
     def db_cache(self):
         return self.__db_cache
 
+    @property
+    def dz_cache(self):
+        return self.__dz_cache
+
     def set_as_last(self, is_last: bool):
         self.__is_last = is_last
 
