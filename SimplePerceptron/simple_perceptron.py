@@ -13,6 +13,7 @@ class SimplePerceptron:
         self.__init_weights(x_train.shape[0], weight_range)
         self.__act_function = activation_function
         self.__mapping = np.vectorize(input_mapping)
+        self.__output_mapping = np.vectorize(output_mapping)
         self.__is_trained = False
         self.__accuracy = 0
         self.__iterations = 0
@@ -63,6 +64,13 @@ class SimplePerceptron:
         current_cost = self.__cost(self.__weights, x_test)
         activation = self.__activation(current_cost)
         self.__test_accuracy = self.__get_accuracy(y_test, activation)
+
+    def test_one_sample(self, x1, x2):
+        if not self.__is_trained:
+            raise Exception("Model was not trained. Please train the model before using it.")
+        current_cost = self.__cost(self.__weights, self.__mapping(np.array([1, x1, x2]).reshape(3, 1)))
+        activation = self.__activation(current_cost)
+        return 1 if activation[0][0] == 1 else 0
 
     @property
     def train_accuracy(self):

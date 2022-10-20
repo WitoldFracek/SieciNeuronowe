@@ -51,10 +51,10 @@ class Adaline:
             else:
                 self.__idle_error += 1
             if self.__idle_error > 10:
-                print(f"{color.Color.FG.RED}Break! Too many iterations without error change.{color.Color.END}")
-                print(f"{color.Color.FG.RED}Current minimal error: {sqr_err:.3f}{color.Color.END}")
-                print(f"{color.Color.FG.RED}Given minimal error:   {min_error:.3f}{color.Color.END}")
-                print(f"{color.Color.FG.RED}{sqr_err:.3f} > {min_error:.3f}{color.Color.END}")
+                # print(f"{color.Color.FG.RED}Break! Too many iterations without error change.{color.Color.END}")
+                # print(f"{color.Color.FG.RED}Current minimal error: {sqr_err:.3f}{color.Color.END}")
+                # print(f"{color.Color.FG.RED}Given minimal error:   {min_error:.3f}{color.Color.END}")
+                # print(f"{color.Color.FG.RED}{sqr_err:.3f} > {min_error:.3f}{color.Color.END}")
                 break
             dw = error.dot(self.__x_train.T)
             self.__weights = self.__weights + learning_rate * dw
@@ -62,7 +62,11 @@ class Adaline:
 
     def test(self, x_test, y_test):
         cost = self.__cost(self.__weights, x_test)
-        self.__test_accuracy = self.__get_accuracy(y_test, cost)
+        self.__test_accuracy = self.__get_accuracy(self.__output_map(y_test), cost)
+
+    def test_one_sample(self, x1, x2):
+        current_cost = self.__cost(self.__weights, np.array([1, x1, x2]).reshape(3, 1))
+        return 1 if self.__output_map(current_cost)[0][0] == 1 else 0
 
     @property
     def train_accuracy(self):
