@@ -1,0 +1,151 @@
+{
+  "main": {
+    "id": "94369e4f6e6b34cc",
+    "type": "split",
+    "children": [
+      {
+        "id": "f15044e938e78160",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "aec9e2616cac7f5f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Sieci neuronowe/Wykład 20.10.2022.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ffd19f901581fb90",
+    "type": "split",
+    "children": [
+      {
+        "id": "ee94a7ce882df598",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "79947c9d0be7c4d5",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "3cbb21c5e70e871f",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "39e8461f41de792e",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "6dfe4ab325735ad5",
+    "type": "split",
+    "children": [
+      {
+        "id": "ce1de0647c04818a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "41c0aabdeeeb5c75",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Sieci neuronowe/Wykład 20.10.2022.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "9c6c59083c1b41e7",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Sieci neuronowe/Wykład 20.10.2022.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "4163ded860918ce0",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "dbbcdcba8e43405b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Sieci neuronowe/Wykład 20.10.2022.md"
+              }
+            }
+          },
+          {
+            "id": "849ee5273a182c10",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "ribbon": {
+    "mostRecentAction": ""
+  },
+  "active": "aec9e2616cac7f5f",
+  "lastOpenFiles": []
+}

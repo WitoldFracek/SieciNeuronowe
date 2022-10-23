@@ -49,6 +49,11 @@ $$n_n = \sqrt{n_{in} * n_{out}} $$
 **Zbyt <mark class="hltr-cyan">mały</mark> współczynnik uczenia** - długie oczekiwanie na jakikolwiek efekt.
 **Zbyt <mark class="hltr-red">duży</mark> współćzynnik uczenia** - brak zbierzności uczenia.
 
+```ad-note
+Metody gradientowe powodują znalezienie minimum lokalnego co nie zawsze oznacza że uda się znaleźć minimum globalne. Jeżeli sieć nie jest w stanie osiągnąć zadanego minimum to losuje się wagi od początku z nadzieją na trafienie na lepszy start.
+```
+
+
 #### Trenownaie i walidacja modelu
 Trenujemy sieć dobierając wartości hiperparametrów.
 **Hiperparametry**:
@@ -116,8 +121,5 @@ $$accuracy = \frac{TP + TN}{TP + TN + FP + FN}$$
 $$precission = \frac{TP}{TP + FP}$$
 
 
-
-
-<mark class="hltr-cyan">Metody gradientowe powodują znalezienie minimum lokalnego co nie zawsze oznacza że uda się znaleźć minimum globalne. Jeżeli sieć nie jest w stanie osiągnąć zadanego minimum to losuje się wagi od początku z nadzieją na trafienie na lepszy start.</mark>
 
 
