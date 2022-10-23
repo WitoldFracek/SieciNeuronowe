@@ -1,0 +1,156 @@
+{
+  "main": {
+    "id": "aa81c58e1ba2d5c0",
+    "type": "split",
+    "children": [
+      {
+        "id": "ee942347c1f47e79",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0a6fa427ff0f7a5a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Wykład 20.10.2022.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2ba1bcb509b9c77e",
+    "type": "split",
+    "children": [
+      {
+        "id": "d5b4ee20fff617fd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "aab7ce7e24255af1",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "6db928bb919d458e",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "e7112fda1cbf2116",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 217.5
+  },
+  "right": {
+    "id": "46f75b3bcf18fde8",
+    "type": "split",
+    "children": [
+      {
+        "id": "3a9f91c5b2b81dfd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a2cc58025a78ed4a",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Wykład 20.10.2022.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "a2daf5a8dc4dd21d",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Wykład 20.10.2022.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "b0800f4f9f431a09",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "6dc374351e757b3c",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Wykład 20.10.2022.md"
+              }
+            }
+          },
+          {
+            "id": "de850d874ed8d219",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "ribbon": {
+    "mostRecentAction": ""
+  },
+  "active": "0a6fa427ff0f7a5a",
+  "lastOpenFiles": [
+    "Storage/Overfitting.png",
+    "Wykład 20.10.2022.md",
+    "Pasted image 20221020160002.png"
+  ]
+}
