@@ -135,4 +135,3 @@ $N_h$ - liczba neuronów w warstwie ukrytej
 
 **Randomizacja w warstwie wejściowej**
 Losowo w zakkresie $[-0.5, 0.5]$
-
