@@ -10,6 +10,7 @@
 ##### Dane
 Kiedy mamy mało zdjęć do warstwy wejściowej należy rozpatrzeć dane pod kontem konkretnyc hcech. Na przykad gdy chcemy rozpoznawać emocje na twarzy a mamy mało zdjęć twarzy możemy uwzględnić cechy takie jak: rozwarcie ust, kąt rozwarcia, wysokość brwi, czy brwi są na jednej lini, szerokość źrenic, itp. W ten sposób ograniczamy elementy związane z uczeniem do mniejszej liczby cech przez co łatwiej taki model nauczyć w przypadku ograniczonego zbioru danych wejściowych.
 
+
 #### Skład danych
 - Zbiór treningowy - zbiór na któym uczy się model
 - Zbiór walidacyjny (dev - development)

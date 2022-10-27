@@ -1,4 +1,5 @@
 from layer import Layer
+import numpy as np
 
 
 class NeuralNetwork:
@@ -16,6 +17,25 @@ class NeuralNetwork:
                           init_weights[i],
                           learning_rate)
             self.__layers.append(layer)
+
+    def forward(self, x: np.ndarray) -> np.ndarray:
+        a = x
+        for layer in self.__layers:
+            a = layer.forward(a)
+        return a
+
+    def backward(self, y: np.ndarray):
+        last_layer = self.__layers[-1]
+        dz = last_layer.last_layer_operations(y)
+        w = last_layer.weights
+        for layer in self.__layers[-2::-1]:
+            w, dz = layer.backward(w, dz)
+
+    def update(self):
+        for layer in self.__layers:
+            layer.update()
+
+
 
 
 

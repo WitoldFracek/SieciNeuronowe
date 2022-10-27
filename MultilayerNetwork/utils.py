@@ -32,7 +32,9 @@ def tanh_der(value):
     return 1 - tanh(value) ** 2
 
 
-def softmax(values: np.ndarray, index: int):
-    denom = np.sum(np.exp(values))
-    nom = math.exp(values[index])
-    return nom / denom
+def softmax(values: np.ndarray) -> np.ndarray:
+    return np.column_stack([softmax_column(column) for column in values[...].T])
+
+
+def softmax_column(values):
+    return np.exp(values) / np.sum(np.exp(values))

@@ -13,7 +13,11 @@ arr = np.array([
     [5, 1, 3]
 ])
 
-sm = np.column_stack([softmax(column) for column in arr[...].T])
-print(sm)
+# sm = np.column_stack([softmax(column) for column in arr[...].T])
+# print(sm)
+
+xs = [x for x in range(10)]
+for elem in xs[-2::-1]:
+    print(elem)
 
 
