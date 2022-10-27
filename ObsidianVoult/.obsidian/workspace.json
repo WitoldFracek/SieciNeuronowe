@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Sieci neuronowe/Wykład 20.10.2022.md",
+                "file": "Sieci neuronowe/Dobre praktyki.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Sieci neuronowe/Wykład 20.10.2022.md",
+                "file": "Sieci neuronowe/Dobre praktyki.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Sieci neuronowe/Wykład 20.10.2022.md",
+                "file": "Sieci neuronowe/Dobre praktyki.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Sieci neuronowe/Wykład 20.10.2022.md"
+                "file": "Sieci neuronowe/Dobre praktyki.md"
               }
             }
           },
@@ -147,5 +147,8 @@
     "mostRecentAction": ""
   },
   "active": "aec9e2616cac7f5f",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "Sieci neuronowe/Krzywa AUC-ROC.md",
+    "Sieci neuronowe/Dobre praktyki.md"
+  ]
 }

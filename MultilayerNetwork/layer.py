@@ -15,9 +15,8 @@ class Layer:
         self.__db_cache: float = 0
         self.__dz_cache: np.ndarray = np.zeros((1, 1))
         self.__learning_rate = learning_rate
-        self.__bias = random.random() #  np.random.randn(output_size, 1) * 0.001
+        self.__bias = random.random()
         self.__cluster_size = 0
-        self.__is_last = False
 
     def __init_weights(self, input_size: int, output_size: int, weights_range) -> np.ndarray:
         if weights_range is None:
@@ -35,12 +34,12 @@ class Layer:
 
     def backward(self, next_w, next_dz):
         dz = next_w.T.dot(next_dz) * self.__act_derivative(self.__z_cache)
+        # print(dz)
+        # print()
         dw = dz.dot(self.__x_cache.T) / self.__cluster_size
         db = np.sum(dz, axis=1, keepdims=True) / self.__cluster_size
         self.__dw_cache = dw
         self.__db_cache = db
-        # self.__weights = self.__weights - self.__learning_rate * dw
-        # self.__bias = self.__bias - self.__learning_rate * db
         return self.__weights, dz
 
     def update(self):
@@ -76,8 +75,6 @@ class Layer:
     def dz_cache(self):
         return self.__dz_cache
 
-    def set_as_last(self, is_last: bool):
-        self.__is_last = is_last
 
 
 

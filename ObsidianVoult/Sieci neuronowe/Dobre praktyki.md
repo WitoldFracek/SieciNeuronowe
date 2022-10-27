@@ -25,7 +25,7 @@ $$C = C_0 + \frac{\lambda}{p}\sum_w{w^2}$$
 $$w(t+1) = w(t) - \eta \frac{\partial C_0}{\partial w} - \frac{\eta \lambda}{p}w$$
 
 ```ad-warning
-title: BIas
+title: Bias
 Bias zostaje bez regularyzacji
 
 ```
