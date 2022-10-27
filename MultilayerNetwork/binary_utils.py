@@ -48,6 +48,20 @@ def generate_set(size, logic_values, operator):
     return np.column_stack(ret_x), np.column_stack(ret_y)
 
 
+def generate_set_flat(size, logic_values):
+    ret_x = [np.array((x1, x2)) for x1, x2, _ in logic_values]
+    ret_y = [y for _, _, y in logic_values]
+    for _ in range(size - 4):
+        x1, x2, y = random.choice(logic_values)
+        sign1 = random.choice([-1, 1])
+        sign2 = random.choice([-1, 1])
+        new_x1 = x1 + sign1 * random.random() * 0.001
+        new_x2 = x2 + sign2 * random.random() * 0.001
+        ret_x.append(np.array((new_x1, new_x2)))
+        ret_y.append(y)
+    return np.column_stack(ret_x), np.array(ret_y).reshape((1, -1))
+
+
 @np.vectorize
 def unipolar_activation(value: float, theta=0) -> int:
     return 1 if value > theta else 0
@@ -72,3 +86,4 @@ def plot_result(x: np.ndarray, y: np.ndarray, w: np.ndarray, plot_range=(0, 1), 
     pyl.axhline(y=0, color='k')
     pyl.axvline(x=0, color='k')
     pyl.show()
+

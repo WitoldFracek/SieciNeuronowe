@@ -8,15 +8,71 @@
         "type": "tabs",
         "children": [
           {
+            "id": "658f09ca639f94c0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Dobre praktyki.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "04cc822ee0491dc8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Gradient descent.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
             "id": "0a6fa427ff0f7a5a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Wykład 20.10.2022.md",
+                "file": "Architektura, Dane wejściowe, Przeuczanie.md",
                 "mode": "source",
                 "source": false
               }
+            }
+          },
+          {
+            "id": "243cf68edf0a4f1c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Macierz pomyłek.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "3574e189a0f90c93",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Krzywa AUC-ROC.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "c74fe5d7ed2d9a10",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {}
             }
           }
         ]
@@ -85,12 +141,12 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Wykład 20.10.2022.md",
+                "file": "Dobre praktyki.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
+                "showSearch": true,
+                "searchQuery": "cal",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -102,7 +158,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Wykład 20.10.2022.md",
+                "file": "Dobre praktyki.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +181,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Wykład 20.10.2022.md"
+                "file": "Dobre praktyki.md"
               }
             }
           },
@@ -137,7 +193,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -147,10 +204,14 @@
   "ribbon": {
     "mostRecentAction": ""
   },
-  "active": "0a6fa427ff0f7a5a",
+  "active": "658f09ca639f94c0",
   "lastOpenFiles": [
+    "Gradient descent.md",
+    "Dobre praktyki.md",
+    "Architektura, Dane wejściowe, Przeuczanie.md",
+    "Krzywa AUC-ROC.md",
+    "Macierz pomyłek.md",
     "Storage/Overfitting.png",
-    "Wykład 20.10.2022.md",
     "Pasted image 20221020160002.png"
   ]
 }

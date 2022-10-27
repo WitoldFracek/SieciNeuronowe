@@ -1,4 +1,6 @@
 #Architektura #DaneWejsciowe #Przeuczanie
+20.10.2022
+
 ### Projektowanie architektury sieci
 **architektura** - sposób połączneia neuronów, liczność neuronów
 **Warstwy:**
@@ -105,22 +107,6 @@ Co iterację waliduje się obecne nauczenie zbiorem walidacyjnym. W momencie gdy
 **Walidacja krzyżowa** - dla małych zbiorów (k-cross validation). Polega na podzieleniu zbioru danych na *k* podzbiorów. Sieć uczy się na *k-1* podzbiorach a na *k-tym* podzbiorze się testuje.
 **Hold one out** - stosowana gdy mamy bardzo mało wzorców do uczenia. Podobnie jak w przypadku walidacji krzyżowej ale ze zbioru wyłączamy tylko jedną próbkę a nie pewien podzbiór.
 **Bootstraping** - towrzymy podzbiory zbioru danych przez losowanie ze zwracaniem (dotyczy zarówno zbioru testowego i uczącego).
-
-#### Maczierze pomyłek
-|    |positive|negative|
-| ----------|--------|--------|
-| positive | True Positive | False Negative |
-| negative | False Positive  | True Negative |
-
-**Miara oceny jakości** - mówi o tym jak dobrze model unika złej klasyfikacji.
-$$recall = \frac{TP}{TP + FN}$$
-**Specyficzność** - mówi o tym jak dobrze model unika False Positives.
-$$specificity = \frac{TN}{TN + FP}$$
-**Dokładność**
-$$accuracy = \frac{TP + TN}{TP + TN + FP + FN}$$
-**Prezycja** - mówi o stopniu powtarzalności wyniku.
-$$precission = \frac{TP}{TP + FP}$$
-
-
+[[Macierz pomyłek]]
 
 
