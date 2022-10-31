@@ -9,13 +9,13 @@ class NeuralNetwork:
                  init_weights_range=None,
                  learning_rate=0.01):
         self.__layers = []
-        init_weights = init_weights_range if init_weights_range else [None] * len(layers_sizes)
+        init_weights = [init_weights_range] * len(layers_sizes) if init_weights_range else [None] * len(layers_sizes)
         for i in range(len(layers_sizes)):
-            layer = Layer(layers_sizes[i],
-                          act_functions[i],
-                          act_derivatives[i],
-                          init_weights[i],
-                          learning_rate)
+            layer = Layer(size=layers_sizes[i],
+                          activation=act_functions[i],
+                          act_derivative=act_derivatives[i],
+                          init_weights_range=init_weights[i],
+                          learning_rate=learning_rate)
             self.__layers.append(layer)
 
     def forward(self, x: np.ndarray) -> np.ndarray:

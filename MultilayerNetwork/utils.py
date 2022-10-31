@@ -2,46 +2,31 @@ import math
 import numpy as np
 
 
-@np.vectorize
-def relu(value):
-    return max(0, value)
+def relu(values: np.ndarray) -> np.ndarray:
+    return (values >= 0).astype(int) * values
 
 
-@np.vectorize
-def relu_der(value):
-    return 1 if value > 0 else 0
+def relu_der(values: np.ndarray) -> np.ndarray:
+    return (values >= 0).astype(int)
 
 
-@np.vectorize
-def sigmoid(value):
-    e_value = math.exp(-value)
-    return 1 / (1 + e_value)
+def sigmoid(values: np.ndarray) -> np.ndarray:
+    return 1 / (1 + np.exp(values * (-1)))
 
 
-@np.vectorize
-def sigmoid_der(value):
-    e_value = math.exp(-value)
-    sig = 1 / (1 + e_value)
+def sigmoid_der(values: np.ndarray) -> np.ndarray:
+    sig = sigmoid(values)
     return sig * (1 - sig)
 
 
-@np.vectorize
-def tanh(value):
-    e_value = math.exp(-2 * value)
-    return 2 / (1 + e_value) - 1
+def tanh(values: np.ndarray) -> np.ndarray:
+    return np.tanh(values)
 
 
-@np.vectorize
-def tanh_der(value):
-    # e_value = math.exp(-2 * value)
-    # th = 2 / (1 + e_value) - 1
-    # return 1 - th ** 2
+def tanh_der(value: np.ndarray) -> np.ndarray:
     return 1 - tanh(value) ** 2
 
 
 def softmax(values: np.ndarray) -> np.ndarray:
     return np.exp(values) / np.sum(np.exp(values), axis=0)
 
-
-def softmax_column(values):
-    return np.exp(values) / np.sum(np.exp(values))

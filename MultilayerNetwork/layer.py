@@ -30,14 +30,10 @@ class Layer:
         a = self.__act_fun(z)
         self.__z_cache = z
         self.__a_cache = a
-        # print(a)
-        # print()
         return a
 
     def backward(self, next_w, next_dz):
         dz = next_w.T.dot(next_dz) * self.__act_derivative(self.__z_cache)
-        # print(dz)
-        # print()
         dw = dz.dot(self.__x_cache.T) / self.__cluster_size
         db = np.sum(dz, axis=1, keepdims=True) / self.__cluster_size
         self.__dw_cache = dw

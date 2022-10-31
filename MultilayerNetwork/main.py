@@ -1,31 +1,35 @@
 from neural_network import NeuralNetwork
-from utils import relu, softmax, relu_der, sigmoid, sigmoid_der
+from utils import relu, softmax, relu_der, sigmoid, sigmoid_der, tanh, tanh_der
 import numpy as np
 from binary_utils import *
+from keras.datasets import mnist
+import tensorflow
+from tqdm import tqdm
 
 np.set_printoptions(precision=3, suppress=True)
 
-layer_sizes = [(2, 5), (5, 2)]
-act_functions = [relu] * len(layer_sizes)
-act_functions[-1] = softmax
-act_derivatives = [relu_der] * len(layer_sizes)
+LAYER_SIZES = [(2, 2), (2, 2)]
+ACT_FUNCTIONS = [relu] * len(LAYER_SIZES)
+ACT_FUNCTIONS[-1] = softmax
+ACT_DERIVATIVES = [relu_der] * len(LAYER_SIZES)
+LEARNING_RATE = 0.5
+ITERATIONS = 10_000
 
 
 def main():
-    nn = NeuralNetwork(layer_sizes,
-                       act_functions,
-                       act_derivatives,
-                       learning_rate=0.1)
-    x, y = generate_set(1000, XOR_VALUES, operator_xor)
-    # x, y = generate_set_flat(1000, AND_VALUES)
+    nn = NeuralNetwork(LAYER_SIZES,
+                       ACT_FUNCTIONS,
+                       ACT_DERIVATIVES,
+                       learning_rate=LEARNING_RATE,
+                       init_weights_range=1)
 
-    for i in range(1000):
-        # print(f"Iter {i + 1}")
+    x, y = generate_set(1000, XOR_VALUES, operator_xor)
+    for _ in tqdm(range(ITERATIONS), colour='GREEN'):
         a = nn.forward(x)
         nn.backward(y)
         nn.update()
-    print(x[..., :6])
-    print(a[..., :6])
+    print(x[..., :7])
+    print(a[..., :7])
 
 
 if __name__ == '__main__':
