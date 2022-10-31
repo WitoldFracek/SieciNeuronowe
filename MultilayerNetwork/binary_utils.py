@@ -34,6 +34,12 @@ def operator_or(x1: float, x2: float) -> int:
     return max(i1, i2)
 
 
+def operator_xor(x1: float, x2: float) -> int:
+    i1 = round(x1)
+    i2 = round(x2)
+    return (i1 + i2) % 2
+
+
 def generate_set(size, logic_values, operator):
     ret_x = [np.array((x1, x2)) for x1, x2, _ in logic_values]
     ret_y = [np.array(logic_pair(x1, x2, operator)) for x1, x2, y in logic_values]

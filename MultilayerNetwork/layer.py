@@ -30,6 +30,8 @@ class Layer:
         a = self.__act_fun(z)
         self.__z_cache = z
         self.__a_cache = a
+        # print(a)
+        # print()
         return a
 
     def backward(self, next_w, next_dz):
@@ -43,12 +45,18 @@ class Layer:
         return self.__weights, dz
 
     def update(self):
+        temp = self.__weights
         self.__weights = self.__weights - self.__learning_rate * self.__dw_cache
         self.__bias = self.__bias - self.__learning_rate * self.__db_cache
+        # print(f"Diff: \n{temp - self.__weights}")
 
     def last_layer_operations(self, y):
         dz = self.__a_cache - y
         self.__dz_cache = dz
+        dw = dz.dot(self.__x_cache.T) / self.__cluster_size
+        db = np.sum(dz, axis=1, keepdims=True) / self.__cluster_size
+        self.__dw_cache = dw
+        self.__db_cache = db
         return self.__dz_cache
 
     @property
