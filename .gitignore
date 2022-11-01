@@ -1,8 +1,10 @@
 # Byte-compiled / optimized / DLL files
 
+/ObsidianVoult/.obsidian/plugins/*
+/SieciNeuronowe/ObsidianVoult/.obsidian/plugins/*
+
 # C extensions
 *.so
-
 # Distribution / packaging
 .Python
 build/
