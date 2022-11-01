@@ -1,15 +1,11 @@
 import numpy as np
-from utils import softmax, relu
+from data_transform import get_n_best_predictions, get_best_fits_in_column, show_random
 
-#keras.datasets
-# from keras.datasets import mnist
+a = np.array([[0.1, 0.11, 0.09, 1, 0.5],
+              [1, 0.01, 0.2, 0.1, 0.3]]).T
+l = np.array([[0, 0, 0, 1, 0],
+              [1, 0, 0, 0, 0]]).T
 
-arr = np.array([
-    [-1, -2, -3, -4],
-    [0, 0, 3, 0],
-    [5, 1, 3, 1]
-])
-
-print(softmax(arr))
+show_random(a, l)
 
 
