@@ -34,26 +34,24 @@ class Layer:
 
     def backward(self, next_w, next_dz):
         dz = next_w.T.dot(next_dz) * self.__act_derivative(self.__z_cache)
-        dw = dz.dot(self.__x_cache.T) / self.__cluster_size
-        db = np.sum(dz, axis=1, keepdims=True) / self.__cluster_size
-        self.__dw_cache = dw
-        self.__db_cache = db
+        self.__compute_deltas(dz)
         return self.__weights, dz
 
     def update(self):
-        temp = self.__weights
         self.__weights = self.__weights - self.__learning_rate * self.__dw_cache
         self.__bias = self.__bias - self.__learning_rate * self.__db_cache
-        # print(f"Diff: \n{temp - self.__weights}")
 
     def last_layer_operations(self, y):
         dz = self.__a_cache - y
         self.__dz_cache = dz
+        self.__compute_deltas(dz)
+        return self.__dz_cache
+
+    def __compute_deltas(self, dz: np.ndarray):
         dw = dz.dot(self.__x_cache.T) / self.__cluster_size
         db = np.sum(dz, axis=1, keepdims=True) / self.__cluster_size
         self.__dw_cache = dw
         self.__db_cache = db
-        return self.__dz_cache
 
     @property
     def weights(self):

@@ -10,6 +10,14 @@ def relu_der(values: np.ndarray) -> np.ndarray:
     return (values >= 0).astype(int)
 
 
+def relu_cutoff(threshold):
+    def inner(values: np.ndarray) -> np.ndarray:
+        gt = (values >= threshold).astype(int) * threshold
+        lt = np.logical_and(values > 0, values < threshold).astype(int) * values
+        return gt + lt
+    return inner
+
+
 def sigmoid(values: np.ndarray) -> np.ndarray:
     return 1 / (1 + np.exp(values * (-1)))
 
