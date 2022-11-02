@@ -20,7 +20,7 @@ class Layer:
 
     def __init_weights(self, input_size: int, output_size: int, weights_range) -> np.ndarray:
         if weights_range is None:
-            return np.random.randn(output_size, input_size)
+            return np.random.randn(output_size, input_size) * 0.001
         return (np.random.random((output_size, input_size)) - 0.5) * weights_range * 2
 
     def forward(self, x: np.ndarray) -> np.ndarray:
