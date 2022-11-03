@@ -6,9 +6,9 @@ import matplotlib.pyplot as pyl
 
 def show_random(x: np.ndarray, predictions: np.ndarray, labels: np.ndarray, nbest=1):
     pred_col, pred_lab, x_rnd = get_random_prediction(predictions, labels, x)
-    # label = transform_row_to_number(pred_lab)[0][0]
+    label = transform_row_to_number(pred_lab)[0][0]
     column_best_fits = get_best_fits_in_column(pred_col, n=nbest)
-    pyl.title(f"Predicted: {' | '.join([f'{i}: {v * 100:.2f}%' for i, v in column_best_fits])}\nActual: {pred_lab}")
+    pyl.title(f"Predicted: {' | '.join([f'{i}: {v * 100:.2f}%' for i, v in column_best_fits])}\nActual: {label}")
     img = x_rnd.reshape((28, 28)).T
     pyl.imshow(img, cmap='gray')
     pyl.show()
@@ -17,7 +17,7 @@ def show_random(x: np.ndarray, predictions: np.ndarray, labels: np.ndarray, nbes
 def get_random_prediction(predictions: np.ndarray, labels: np.ndarray, x: np.ndarray):
     max_ind = predictions.shape[1]
     index = random.randint(0, max_ind - 1)
-    return predictions.T[index], labels[index], x.T[index]
+    return predictions.T[index], labels.T[index], x.T[index]
 
 
 def shuffle_data(x: np.ndarray, y: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
@@ -61,13 +61,13 @@ def load_mnist_data():
         temp.append(col)
     new_y_train = np.column_stack(temp)
 
-    # temp = []
-    # for elem in y_test:
-    #     col = transform_row_to_one_hit(elem)
-    #     temp.append(col)
-    # new_y_test = np.column_stack(temp)
+    temp = []
+    for elem in y_test:
+        col = transform_row_to_one_hit(elem)
+        temp.append(col)
+    new_y_test = np.column_stack(temp)
 
-    return x_train, new_y_train, x_test, y_test
+    return x_train, new_y_train, x_test, new_y_test
 
 
 def transform_row_to_one_hit(index):

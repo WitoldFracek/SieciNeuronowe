@@ -40,9 +40,7 @@ class NeuralNetwork:
             layer.update()
 
     def get_error(self, error_fn, x: np.ndarray, y: np.ndarray, output_transform=lambda inp: inp):
-        act = self.forward(x)
-        predictions = output_transform(act)
-        print(predictions[:5])
+        predictions = self.forward(x)
         return error_fn(predictions, y)
 
 

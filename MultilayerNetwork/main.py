@@ -6,20 +6,21 @@ from keras.datasets import mnist
 import tensorflow
 from tqdm import tqdm
 import matplotlib.pyplot as pyl
-from data_transform import make_batch, load_mnist_data, shuffle_data, show_random
+from data_transform import make_batch, load_mnist_data, shuffle_data, show_random, transform_row_to_one_hit
 
 np.set_printoptions(precision=3, suppress=True)
 
 # LAYER_SIZES = [(28 * 28, 70), (70, 50), (50, 10)]  # accuracy 91%
-LAYER_SIZES = [(28 * 28, 50), (50, 40), (40, 30), (30, 10)]
-ACT_FUNCTIONS = [tanh] * len(LAYER_SIZES)
+# LAYER_SIZES = [(28 * 28, 50), (50, 40), (40, 30), (30, 10)]
+LAYER_SIZES = [(28 * 28, 50), (50, 10)]
+ACT_FUNCTIONS = [sigmoid] * len(LAYER_SIZES)
 ACT_FUNCTIONS[-1] = softmax
-ACT_DERIVATIVES = [tanh_der] * len(LAYER_SIZES)
+ACT_DERIVATIVES = [sigmoid_der] * len(LAYER_SIZES)
 LEARNING_RATE = 0.3
-ITERATIONS = 400
+ITERATIONS = 40
 BATCH_SIZE = 100
-BATCH_NUMBER = 100
-STANDARD_DEV = 0.01
+BATCH_NUMBER = 600
+STANDARD_DEV = 1
 MEAN = 0
 
 
@@ -36,26 +37,23 @@ def main():
     x_train, y_train = shuffle_data(x_train, y_train)
 
     training_sets = [make_batch(BATCH_SIZE, x_train, y_train) for _ in range(BATCH_NUMBER)]
-
-    for _ in range(ITERATIONS):
+    errs = []
+    for _ in tqdm(range(ITERATIONS), colour='GREEN'):
         for x_batch, y_batch in training_sets:
             nn.forward(x_batch)
             nn.backward(y_batch)
             nn.update()
-        # x_exmpl, y_exmpl = training_sets[0]
-        # err = nn.get_error(mean_squared_error, x_exmpl, y_exmpl, output_transform=lambda pred: np.argmax(pred, axis=0))
-        # print(err)
-    # for _ in tqdm(range(BATCH_ITERATIONS), colour='BLUE'):
-    #     x_batch, y_batch = make_batch(BATCH_SIZE, x_train, y_train)
-    #     for _ in range(ITERATIONS):
-    #         nn.forward(x_batch)
-    #         nn.backward(y_batch)
-    #         nn.update()
+        x_exmpl, y_exmpl = training_sets[-1]
+        err = nn.get_error(mean_squared_error, x_exmpl, y_exmpl)
+        errs.append(err)
 
     predictions = nn.forward(x_test)
 
     values = np.argmax(predictions, axis=0)
-    print(np.mean(values == y_test))
+    print(np.mean(values == np.argmax(y_test, axis=0)))
+
+    pyl.plot(range(0, len(errs)), errs)
+    pyl.show()
 
     show = True
     while show:
