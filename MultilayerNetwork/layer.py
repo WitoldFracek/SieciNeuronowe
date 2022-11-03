@@ -3,9 +3,11 @@ import random
 
 
 class Layer:
-    def __init__(self, size: tuple[int, int], activation, act_derivative, init_weights_range=None, learning_rate=0.1):
+    def __init__(self, size: tuple[int, int], activation, act_derivative, init_weights_range=None,
+                 learning_rate=0.1,
+                 std_dev=1, mean=0):
         input_size, output_size = size
-        self.__weights = self.__init_weights(input_size, output_size, weights_range=init_weights_range)
+        self.__weights = self.__init_weights(input_size, output_size, weights_range=init_weights_range, std_dev=std_dev, mean=mean)
         self.__act_fun = activation
         self.__act_derivative = act_derivative
         self.__x_cache: np.ndarray = np.zeros((1, 1))
@@ -18,9 +20,10 @@ class Layer:
         self.__bias = random.random()
         self.__cluster_size = 0
 
-    def __init_weights(self, input_size: int, output_size: int, weights_range) -> np.ndarray:
+    def __init_weights(self, input_size: int, output_size: int, weights_range, std_dev=1, mean=0) -> np.ndarray:
         if weights_range is None:
-            return np.random.randn(output_size, input_size) * 0.001
+            return np.random.normal(mean, std_dev, size=(output_size, input_size))
+            # return np.random.randn(output_size, input_size)
         return (np.random.random((output_size, input_size)) - 0.5) * weights_range * 2
 
     def forward(self, x: np.ndarray) -> np.ndarray:

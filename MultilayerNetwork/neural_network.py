@@ -7,7 +7,9 @@ class NeuralNetwork:
                  act_functions: list,
                  act_derivatives: list,
                  init_weights_range=None,
-                 learning_rate=0.01):
+                 learning_rate=0.01,
+                 standard_dev=1,
+                 mean=0):
         self.__layers = []
         init_weights = [init_weights_range] * len(layers_sizes) if init_weights_range else [None] * len(layers_sizes)
         for i in range(len(layers_sizes)):
@@ -15,7 +17,9 @@ class NeuralNetwork:
                           activation=act_functions[i],
                           act_derivative=act_derivatives[i],
                           init_weights_range=init_weights[i],
-                          learning_rate=learning_rate)
+                          learning_rate=learning_rate,
+                          std_dev=standard_dev,
+                          mean=mean)
             self.__layers.append(layer)
 
     def forward(self, x: np.ndarray) -> np.ndarray:
@@ -35,6 +39,11 @@ class NeuralNetwork:
         for layer in self.__layers:
             layer.update()
 
+    def get_error(self, error_fn, x: np.ndarray, y: np.ndarray, output_transform=lambda inp: inp):
+        act = self.forward(x)
+        predictions = output_transform(act)
+        print(predictions[:5])
+        return error_fn(predictions, y)
 
 
 

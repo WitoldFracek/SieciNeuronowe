@@ -38,3 +38,7 @@ def tanh_der(value: np.ndarray) -> np.ndarray:
 def softmax(values: np.ndarray) -> np.ndarray:
     return np.exp(values) / np.sum(np.exp(values), axis=0)
 
+
+def mean_squared_error(predicted: np.ndarray, expected: np.ndarray) -> float:
+    return float(((predicted - expected) ** 2).mean())
+
