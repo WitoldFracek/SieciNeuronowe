@@ -20,48 +20,36 @@
             }
           },
           {
-            "id": "04cc822ee0491dc8",
+            "id": "f16665b9d26846a6",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Gradient descent.md",
+                "file": "Przetwarzanie języka naturalnego.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "0a6fa427ff0f7a5a",
+            "id": "bada58ccccefcbcd",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Architektura, Dane wejściowe, Przeuczanie.md",
+                "file": "Sieci konwolucyjne.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "243cf68edf0a4f1c",
+            "id": "d4d434aac9d4f723",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Macierz pomyłek.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "3574e189a0f90c93",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Krzywa AUC-ROC.md",
+                "file": "Embedding.md",
                 "mode": "source",
                 "source": false
               }
@@ -75,7 +63,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -141,7 +130,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Dobre praktyki.md",
+                "file": "Sieci konwolucyjne.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -158,7 +147,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Dobre praktyki.md",
+                "file": "Sieci konwolucyjne.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -181,7 +170,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Dobre praktyki.md"
+                "file": "Sieci konwolucyjne.md"
               }
             }
           },
@@ -201,16 +190,15 @@
     "width": 300,
     "collapsed": true
   },
-  "ribbon": {
-    "mostRecentAction": ""
-  },
-  "active": "658f09ca639f94c0",
+  "active": "bada58ccccefcbcd",
   "lastOpenFiles": [
-    "Gradient descent.md",
+    "Przetwarzanie języka naturalnego.md",
+    "Embedding.md",
     "Dobre praktyki.md",
     "Architektura, Dane wejściowe, Przeuczanie.md",
     "Krzywa AUC-ROC.md",
     "Macierz pomyłek.md",
+    "Gradient descent.md",
     "Storage/Overfitting.png",
     "Pasted image 20221020160002.png"
   ]

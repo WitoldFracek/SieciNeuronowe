@@ -1,0 +1,2 @@
+Reprezentacja jakichś danych jako wektor wypełniony liczbami rzeczywistymi.
+Z założenia reprezentacaj wekotrowa elementów podobnych powinna być *podobna*. To znaczy że na przykład gdy zajmujemy się badaniem znaczenia słów to słowa o podobnych znaczeniach będą miały podobny embeding.
