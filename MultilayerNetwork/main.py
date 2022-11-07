@@ -11,15 +11,15 @@ from data_transform import make_batch, load_mnist_data, shuffle_data, show_rando
 np.set_printoptions(precision=3, suppress=True)
 
 # LAYER_SIZES = [(28 * 28, 70), (70, 50), (50, 10)]  # accuracy 91%
-# LAYER_SIZES = [(28 * 28, 50), (50, 40), (40, 30), (30, 10)]
-LAYER_SIZES = [(28 * 28, 50), (50, 10)]
+LAYER_SIZES = [(28 * 28, 50), (50, 40), (40, 30), (30, 10)]
+# LAYER_SIZES = [(28 * 28, 50), (50, 10)]
 ACT_FUNCTIONS = [sigmoid] * len(LAYER_SIZES)
 ACT_FUNCTIONS[-1] = softmax
 ACT_DERIVATIVES = [sigmoid_der] * len(LAYER_SIZES)
-LEARNING_RATE = 0.3
-ITERATIONS = 40
-BATCH_SIZE = 100
-BATCH_NUMBER = 600
+LEARNING_RATE = 0.5
+ITERATIONS = 100
+BATCH_SIZE = 500
+BATCH_NUMBER = 300
 STANDARD_DEV = 1
 MEAN = 0
 
