@@ -14,9 +14,32 @@ def show_random(x: np.ndarray, predictions: np.ndarray, labels: np.ndarray, nbes
     pyl.show()
 
 
+def show_bad(pred_col, label, x_rnd):
+    column_best_fits = get_best_fits_in_column(pred_col)
+    pyl.title(f"Predicted: {' | '.join([f'{i}: {v * 100:.2f}%' for i, v in column_best_fits])}\nActual: {label}")
+    img = x_rnd.reshape((28, 28)).T
+    pyl.imshow(img, cmap='gray')
+    pyl.show()
+
+
+def false_values_generator(x: np.ndarray, predictions: np.ndarray, labels: np.ndarray):
+    counter = 0
+    while counter < predictions.shape[1]:
+        pred_col, pred_lab, x_rnd = get_prediction(counter, predictions, labels, x)
+        label = transform_row_to_number(pred_lab)[0][0]
+        cipher = np.argmax(pred_col)
+        if label != cipher:
+            yield pred_col, label, x_rnd
+        counter += 1
+
+
 def get_random_prediction(predictions: np.ndarray, labels: np.ndarray, x: np.ndarray):
     max_ind = predictions.shape[1]
     index = random.randint(0, max_ind - 1)
+    return predictions.T[index], labels.T[index], x.T[index]
+
+
+def get_prediction(index: int, predictions: np.ndarray, labels: np.ndarray, x: np.ndarray):
     return predictions.T[index], labels.T[index], x.T[index]
 
 
