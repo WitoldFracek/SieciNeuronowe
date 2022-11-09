@@ -43,6 +43,13 @@ class NeuralNetwork:
         predictions = self.forward(x)
         return error_fn(predictions, y)
 
+    @property
+    def weights(self):
+        ret = []
+        for layer in self.__layers:
+            ret.append(layer.weights)
+        return ret
+
 
 
 
