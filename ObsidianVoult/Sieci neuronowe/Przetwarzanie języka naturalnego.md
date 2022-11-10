@@ -21,7 +21,7 @@ Składa się z jednej ukrytej **warstwy liniowej**.
 
 ![[Pasted image 20221103154650.png]]
 
-Ta pojedyncza **warstwa liniowa** staje sie [[embeding|embedingiem]] dla danego słowa. Jest mniejwywmiarowym wektorem niż wektor na wejściu i kładają się z liczb rzeczywistych i stanowią pewną reprezentację ukrytą. Słowa o podobnym znaczeniu powinny mieć podobną reprezentację ukrytą.
+Ta pojedyncza **warstwa liniowa** staje sie [[Embedding|embeddingiem]] dla danego słowa. Jest mniejwywmiarowym wektorem niż wektor na wejściu i kładają się z liczb rzeczywistych i stanowią pewną reprezentację ukrytą. Słowa o podobnym znaczeniu powinny mieć podobną reprezentację ukrytą.
 
 ![[Pasted image 20221103154130.png|500]]
 

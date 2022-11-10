@@ -4,67 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "ee942347c1f47e79",
+        "id": "b79f39695aaba588",
         "type": "tabs",
         "children": [
           {
-            "id": "658f09ca639f94c0",
+            "id": "a05f9e26c6078b7f",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Dobre praktyki.md",
+                "file": "Sieci rekurencyjne.md",
                 "mode": "source",
                 "source": false
               }
-            }
-          },
-          {
-            "id": "f16665b9d26846a6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Przetwarzanie języka naturalnego.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "bada58ccccefcbcd",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Sieci konwolucyjne.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "d4d434aac9d4f723",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Embedding.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "c74fe5d7ed2d9a10",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {}
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -130,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Sieci konwolucyjne.md",
+                "file": "Sieci rekurencyjne.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -147,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Sieci konwolucyjne.md",
+                "file": "Sieci rekurencyjne.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -170,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Sieci konwolucyjne.md"
+                "file": "Sieci rekurencyjne.md"
               }
             }
           },
@@ -190,16 +145,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "bada58ccccefcbcd",
+  "active": "a05f9e26c6078b7f",
   "lastOpenFiles": [
     "Przetwarzanie języka naturalnego.md",
-    "Embedding.md",
     "Dobre praktyki.md",
-    "Architektura, Dane wejściowe, Przeuczanie.md",
-    "Krzywa AUC-ROC.md",
+    "embeding.md",
+    "Embedding.md",
     "Macierz pomyłek.md",
+    "Krzywa AUC-ROC.md",
     "Gradient descent.md",
-    "Storage/Overfitting.png",
-    "Pasted image 20221020160002.png"
+    "Architektura, Dane wejściowe, Przeuczanie.md",
+    "Sieci konwolucyjne.md",
+    "Sieci rekurencyjne.md"
   ]
 }
