@@ -1,10 +1,7 @@
 import tensorflow as tf
-import matplotlib.pyplot as plt
-from keras.metrics import Accuracy, FalseNegatives, FalsePositives, TrueNegatives, TruePositives, MeanSquaredError, \
-    CategoricalAccuracy
-import numpy as np
+from keras.metrics import FalseNegatives, FalsePositives, TrueNegatives, TruePositives, MeanSquaredError, \
+    CategoricalAccuracy, Accuracy
 from main import prepare_sets
-import os
 import json
 
 # Network params
@@ -39,7 +36,7 @@ def cnn_vs_mlp(x_train, y_train):
         tf.keras.layers.Dense(100, activation=ACTIVATION),
         tf.keras.layers.Dense(10)
     ])
-    mlp1.compile(loss="categorical_crossentropy", optimizer="adam", metrics=METRICS)
+    mlp1.compile(loss="mean_squared_error", optimizer="adam", metrics=METRICS)
 
     mlp2 = tf.keras.Sequential([
         tf.keras.layers.Flatten(input_shape=(28, 28)),
@@ -47,7 +44,7 @@ def cnn_vs_mlp(x_train, y_train):
         tf.keras.layers.Dense(50, activation=ACTIVATION),
         tf.keras.layers.Dense(10)
     ])
-    mlp2.compile(loss="categorical_crossentropy", optimizer="adam", metrics=METRICS)
+    mlp2.compile(loss="mean_squared_error", optimizer="adam", metrics=METRICS)
 
     cnn1 = tf.keras.Sequential(
         [
@@ -59,7 +56,7 @@ def cnn_vs_mlp(x_train, y_train):
             tf.keras.layers.Dense(10, activation="softmax"),
         ]
     )
-    cnn1.compile(loss="categorical_crossentropy", optimizer="adam", metrics=METRICS)
+    cnn1.compile(loss="mean_squared_error", optimizer="adam", metrics=METRICS)
 
     cnn2 = tf.keras.Sequential(
         [
@@ -71,7 +68,7 @@ def cnn_vs_mlp(x_train, y_train):
             tf.keras.layers.Dense(10, activation="softmax"),
         ]
     )
-    cnn2.compile(loss="categorical_crossentropy", optimizer="adam", metrics=METRICS)
+    cnn2.compile(loss="mean_squared_error", optimizer="adam", metrics=METRICS)
 
     cnn3 = tf.keras.Sequential(
         [
@@ -83,11 +80,11 @@ def cnn_vs_mlp(x_train, y_train):
             tf.keras.layers.Dense(10, activation="softmax"),
         ]
     )
-    cnn3.compile(loss="categorical_crossentropy", optimizer="adam", metrics=METRICS)
+    cnn3.compile(loss="mean_squared_error", optimizer="adam", metrics=METRICS)
 
     # fit models
     history = mlp1.fit(x_train, y_train, epochs=EPOCHS, batch_size=BATCH_SIZE, steps_per_epoch=STEPS_PER_EPOCH,
-                        workers=16, use_multiprocessing=True, verbose=1, validation_split=0.33)
+                       workers=16, use_multiprocessing=True, verbose=1, validation_split=0.33)
     json_save(f'mlp_vs_cnn_mlp1', history.history)
 
     history = mlp2.fit(x_train, y_train, epochs=EPOCHS, batch_size=BATCH_SIZE, steps_per_epoch=STEPS_PER_EPOCH,
@@ -199,14 +196,8 @@ def augmentation_test(x_train, y_train):
 def prepare_models():
     x_train, y_train, x_test, y_test = prepare_sets()
     cnn_vs_mlp(x_train, y_train)
-    pooling_type_test(x_train, y_train)
-    augmentation_test(x_train, y_train)
-
-
-def plot_history_for_model(model):
-    acc = model.history['accuracy']
-    plt.plot(acc)
-    plt.show()
+    # pooling_type_test(x_train, y_train)
+    # augmentation_test(x_train, y_train)
 
 
 if __name__ == '__main__':

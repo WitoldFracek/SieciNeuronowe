@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "504694aeb413ff86",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Sieci neuronowe/Macierz pomyłek.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Sieci neuronowe/Dobre praktyki.md",
+                "file": "Sieci neuronowe/Macierz pomyłek.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Sieci neuronowe/Dobre praktyki.md",
+                "file": "Sieci neuronowe/Macierz pomyłek.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Sieci neuronowe/Dobre praktyki.md"
+                "file": "Sieci neuronowe/Macierz pomyłek.md"
               }
             }
           },
@@ -143,12 +156,10 @@
     "direction": "horizontal",
     "width": 300
   },
-  "ribbon": {
-    "mostRecentAction": ""
-  },
-  "active": "aec9e2616cac7f5f",
+  "active": "504694aeb413ff86",
   "lastOpenFiles": [
-    "Sieci neuronowe/Krzywa AUC-ROC.md",
-    "Sieci neuronowe/Dobre praktyki.md"
+    "Sieci neuronowe/Architektura, Dane wejściowe, Przeuczanie.md",
+    "Sieci neuronowe/Dobre praktyki.md",
+    "Sieci neuronowe/Krzywa AUC-ROC.md"
   ]
 }
