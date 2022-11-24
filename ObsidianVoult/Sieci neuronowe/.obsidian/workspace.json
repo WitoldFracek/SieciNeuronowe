@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Omówienie ogólne istniejących sieci.md",
+                "file": "Macierz pomyłek.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Omówienie ogólne istniejących sieci.md",
+                "file": "Macierz pomyłek.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Omówienie ogólne istniejących sieci.md",
+                "file": "Macierz pomyłek.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Omówienie ogólne istniejących sieci.md"
+                "file": "Macierz pomyłek.md"
               }
             }
           },
@@ -147,6 +147,7 @@
   },
   "active": "82943b2ca79a3871",
   "lastOpenFiles": [
+    "Omówienie ogólne istniejących sieci.md",
     "Macierz pomyłek.md",
     "Architektura, Dane wejściowe, Przeuczanie.md",
     "Sieci rekurencyjne.md",
@@ -155,7 +156,6 @@
     "embeding.md",
     "Embedding.md",
     "Krzywa AUC-ROC.md",
-    "Gradient descent.md",
-    "Sieci konwolucyjne.md"
+    "Gradient descent.md"
   ]
 }

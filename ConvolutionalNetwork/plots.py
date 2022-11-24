@@ -29,7 +29,7 @@ def pooling_results(metric: str, validation=False):
              label='Avg size 5')
     plt.legend()
     plt.title(f"{name} for different pooling types and sizes" + f"{' (validation)' if validation else ''}")
-    plt.xlabel("Epoch")
+    plt.xlabel("epoch")
     plt.ylabel(name.lower())
     plt.show()
 
@@ -74,8 +74,10 @@ def confusion_matrix(keys, subplots, title, keys_names=None, validation=False, p
         ax.text(1, 0, int(arr[1, 0]), ha="center", va="center", color="w", fontdict={'fontsize': inchartfontsize})
         ax.text(1, 1, int(arr[1, 1]), ha="center", va="center", color="w", fontdict={'fontsize': inchartfontsize})
         ax.imshow(arr, cmap='Spectral')
-        ax.set_xticks(np.arange(2), labels=labels)
-        ax.set_yticks(np.arange(2), labels=labels)
+        ax.set_xticks(np.arange(2))
+        ax.set_xticklabels(labels)
+        ax.set_yticks(np.arange(2))
+        ax.set_yticklabels(labels)
         plt.setp(ax.get_xticklabels(), rotation=45, ha="right",
                  rotation_mode="anchor")
         plt.setp(ax.get_yticklabels(), rotation=45, ha="right",
@@ -148,11 +150,15 @@ def cnn_vs_mlp():
                      'TP, FN, FP, TN for different neural networks',
                      keys_mapping=lambda x: x.split('_')[-1],
                      fontsize=12, pad=4.5, inchartfontsize=8, axis_turnoff=[(1, 2)])
+    confusion_matrix(sorted([key for key in DATA.keys() if 'mlp_vs_cnn' in key]), (2, 3),
+                     'TP, FN, FP, TN for different neural networks',
+                     keys_mapping=lambda x: x.split('_')[-1], validation=True,
+                     fontsize=12, pad=4.5, inchartfontsize=8, axis_turnoff=[(1, 2)])
 
 
 if __name__ == '__main__':
-    # pooling()
+    pooling()
     # augmentation()
-    cnn_vs_mlp()
+    # cnn_vs_mlp()
 
 
