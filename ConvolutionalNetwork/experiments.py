@@ -193,9 +193,62 @@ def augmentation_test(x_train, y_train):
     json_save(f'augmentation_flip_translation', history.history)
 
 
+def augmentation_vs_cnn(x_train, y_train):
+    random_translation = tf.keras.Sequential([
+        tf.keras.Input(shape=INPUT_SHAPE),
+        tf.keras.layers.RandomTranslation(height_factor=0.2, width_factor=0.2),
+        tf.keras.layers.Conv2D(FILTERS, kernel_size=(3, 3), activation=ACTIVATION),
+        tf.keras.layers.MaxPooling2D(pool_size=(2, 2), strides=STEP),
+        tf.keras.layers.Flatten(),
+        tf.keras.layers.Dense(100, activation=ACTIVATION),
+        tf.keras.layers.Dense(10, activation="softmax"),
+    ])
+    random_translation.compile(loss="categorical_crossentropy", optimizer="adam", metrics=METRICS)
+
+    random_rotation = tf.keras.Sequential([
+        tf.keras.Input(shape=INPUT_SHAPE),
+        tf.keras.layers.RandomRotation(factor=0.2),
+        tf.keras.layers.Conv2D(FILTERS, kernel_size=(3, 3), activation=ACTIVATION),
+        tf.keras.layers.MaxPooling2D(pool_size=(2, 2), strides=STEP),
+        tf.keras.layers.Flatten(),
+        tf.keras.layers.Dense(100, activation=ACTIVATION),
+        tf.keras.layers.Dense(10, activation="softmax"),
+    ])
+    random_rotation.compile(loss="categorical_crossentropy", optimizer="adam", metrics=METRICS)
+
+    cnn = tf.keras.Sequential(
+        [
+            tf.keras.Input(shape=INPUT_SHAPE),
+            tf.keras.layers.Conv2D(FILTERS, kernel_size=(3, 3), activation=ACTIVATION),
+            tf.keras.layers.MaxPooling2D(pool_size=POOLING_SIZE, strides=STEP),
+            tf.keras.layers.Flatten(),
+            tf.keras.layers.Dense(100, activation=ACTIVATION),
+            tf.keras.layers.Dense(10, activation="softmax"),
+        ]
+    )
+    cnn.compile(loss="categorical_crossentropy", optimizer="adam", metrics=METRICS)
+
+    # model fit
+    history = random_rotation.fit(x_train, y_train, epochs=EPOCHS, batch_size=BATCH_SIZE,
+                                  steps_per_epoch=STEPS_PER_EPOCH,
+                                  workers=16, use_multiprocessing=True, verbose=1, validation_split=0.33)
+    json_save(f'cnn_vs_aug_rotation', history.history)
+
+    history = random_translation.fit(x_train, y_train, epochs=EPOCHS, batch_size=BATCH_SIZE,
+                                     steps_per_epoch=STEPS_PER_EPOCH,
+                                     workers=16, use_multiprocessing=True, verbose=1, validation_split=0.33)
+    json_save(f'cnn_vs_aug_translation', history.history)
+
+    history = cnn.fit(x_train, y_train, epochs=EPOCHS, batch_size=BATCH_SIZE,
+                      steps_per_epoch=STEPS_PER_EPOCH, workers=16, use_multiprocessing=True,
+                      verbose=1, validation_split=0.33)
+    json_save(f'cnn_vs_aug_no_augmentation', history.history)
+
+
 def prepare_models():
     x_train, y_train, x_test, y_test = prepare_sets()
-    cnn_vs_mlp(x_train, y_train)
+    # cnn_vs_mlp(x_train, y_train)
+    augmentation_vs_cnn(x_train, y_train)
     # pooling_type_test(x_train, y_train)
     # augmentation_test(x_train, y_train)
 

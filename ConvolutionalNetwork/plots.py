@@ -141,6 +141,38 @@ def augmentation():
                      fontsize=12, pad=4.5, inchartfontsize=10, validation=True)
 
 
+def augmentation_vs_cnn_results(metric, validation=False):
+    prefix = 'val_' if validation else ''
+    metric_name = ' '.join(metric.capitalize().split('_'))
+    metric = prefix + metric
+    keys = [key for key in DATA.keys() if 'cnn_vs_aug' in key]
+    colors = ['#0099ff', '#ff9900', '#cc0000']
+    for key, color in zip(keys, colors):
+        data = DATA[key][metric]
+        label = " ".join(key.split('_')[3:])
+        plt.plot(range(1, len(data) + 1), data, c=color, label=label)
+    plt.legend()
+    plt.title(f"{metric_name} for different augmentation methods" + f"{' (validation)' if validation else ''}")
+    plt.xlabel('epoch')
+    plt.ylabel(metric_name.lower())
+    plt.show()
+
+
+def augmentation_vs_cnn():
+    def name_mapping(key):
+        xs = key.split('_')
+        return ' '.join(xs[3:]).lower()
+    augmentation_vs_cnn_results('mean_squared_error')
+    augmentation_vs_cnn_results('mean_squared_error', True)
+    augmentation_vs_cnn_results('categorical_accuracy')
+    augmentation_vs_cnn_results('categorical_accuracy', True)
+    confusion_matrix([key for key in DATA.keys() if 'cnn_vs_aug' in key], (2, 2),
+                     "TP, FN, FP, TN for different augmentation methods", keys_mapping=name_mapping,
+                     axis_turnoff=[(1, 1)], validation=False, fontsize=10, inchartfontsize=10, pad=4)
+    confusion_matrix([key for key in DATA.keys() if 'cnn_vs_aug' in key], (2, 2),
+                     "TP, FN, FP, TN for different augmentation methods", keys_mapping=name_mapping,
+                     axis_turnoff=[(1, 1)], validation=True, fontsize=10, inchartfontsize=10, pad=4)
+
 def cnn_vs_mlp():
     cnn_vs_mlp_results('categorical_accuracy')
     cnn_vs_mlp_results('categorical_accuracy', True)
@@ -160,5 +192,9 @@ if __name__ == '__main__':
     pooling()
     # augmentation()
     # cnn_vs_mlp()
+<<<<<<< Updated upstream
+=======
+    augmentation_vs_cnn()
+>>>>>>> Stashed changes
 
 
