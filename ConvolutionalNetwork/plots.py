@@ -192,9 +192,6 @@ if __name__ == '__main__':
     pooling()
     # augmentation()
     # cnn_vs_mlp()
-<<<<<<< Updated upstream
-=======
     augmentation_vs_cnn()
->>>>>>> Stashed changes
 
 

@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Sieci neuronowe/Macierz pomyłek.md",
+                "file": "Sieci neuronowe/Dobre praktyki.md",
                 "mode": "source",
                 "source": false
               }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Sieci neuronowe/Macierz pomyłek.md",
+                "file": "Sieci neuronowe/Dobre praktyki.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Sieci neuronowe/Macierz pomyłek.md",
+                "file": "Sieci neuronowe/Dobre praktyki.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Sieci neuronowe/Macierz pomyłek.md"
+                "file": "Sieci neuronowe/Dobre praktyki.md"
               }
             }
           },
@@ -158,8 +158,15 @@
   },
   "active": "504694aeb413ff86",
   "lastOpenFiles": [
+    "Sieci neuronowe/Embedding.md",
+    "Sieci neuronowe/Gradient descent.md",
+    "Sieci neuronowe/Krzywa AUC-ROC.md",
+    "Sieci neuronowe/Macierz pomyłek.md",
+    "Sieci neuronowe/Omówienie ogólne istniejących sieci.md",
+    "Sieci neuronowe/Przetwarzanie języka naturalnego.md",
+    "Sieci neuronowe/Sieci konwolucyjne.md",
+    "Sieci neuronowe/Sieci rekurencyjne.md",
     "Sieci neuronowe/Architektura, Dane wejściowe, Przeuczanie.md",
-    "Sieci neuronowe/Dobre praktyki.md",
-    "Sieci neuronowe/Krzywa AUC-ROC.md"
+    "Sieci neuronowe/Dobre praktyki.md"
   ]
 }

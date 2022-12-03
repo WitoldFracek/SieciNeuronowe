@@ -1,61 +1,85 @@
 import tensorflow as tf
-import numpy as np
 from keras.models import Sequential
-from keras.layers import Dense, SimpleRNN, LSTM, Embedding, ZeroPadding1D, Masking
-from sklearn.metrics import mean_squared_error
+from keras.layers import Dense, SimpleRNN, LSTM, Embedding
 from keras.utils import pad_sequences
-import matplotlib.pyplot as plt
+from keras.metrics import BinaryAccuracy, FalseNegatives, FalsePositives, TrueNegatives, TruePositives
+import os
+import json
 
-NUM_WORDS = None  # default: None
-SKIP_TOP = 0  # default: 0
-MAX_LEN = None  # default: None
-START_CHAR = 1  # default: 1
-OOV_CHAR = 2
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
+EPOCHS = 10
 BATCH_SIZE = 128
-
-EMBEDDING_SPACE = 100
 ACTIVATION = 'tanh'
 
+SAVE_PATH = 'experiments.json'
 
-def load_data():
+
+def load_data(padding_max_len, top_words, skip_top: int = 0):
     (x_train, y_train), (x_test, y_test) = tf.keras.datasets.imdb.load_data(
         path="imdb.npz",
-        num_words=NUM_WORDS,
-        skip_top=SKIP_TOP
+        num_words=top_words,
+        skip_top=skip_top
     )
-    print(y_train.shape)
-    return pad_sequences(x_train, padding='post'), y_train, pad_sequences(x_test, padding='post'), y_test
-    # return x_train, y_train, x_test, y_test
+    x_train = pad_sequences(x_train, padding='post', maxlen=padding_max_len)
+    x_test = pad_sequences(x_test, padding='post', maxlen=padding_max_len)
+    return x_train, y_train, x_test, y_test
 
 
-# 88584
-def make_rnn():
+# 88584 - tyle jest różnych słów
+# 2494 - maksymalna długość opini z paddingiem
+# 1051 - maksymalna liczba słów w opini po splicie
+def make_rnn(embedding_len: int, input_len: int, rnn_layer, mask=True):
     model = Sequential([
-        Embedding(input_dim=90_000, output_dim=64, mask_zero=True),
-        SimpleRNN(units=128, activation='tanh'),
-        # LSTM(128),
+        Embedding(input_dim=88585, output_dim=embedding_len, input_length=input_len, mask_zero=mask),
+        rnn_layer,
         Dense(units=1, activation='sigmoid')
     ])
-    model.compile(loss='mean_squared_error', optimizer='adam', metrics=['mean_squared_error'])
+    model.compile(loss='mean_squared_error', optimizer='adam',
+                  metrics=['mean_squared_error', BinaryAccuracy(), TruePositives(), TrueNegatives(), FalsePositives(),
+                           FalseNegatives()])
     return model
 
 
-def main():
-    x_train, y_train, x_test, y_test = load_data()
-    print(x_train.shape)
-    model = make_rnn()
-    history = model.fit(x_train, y_train, epochs=1, verbose="auto", workers=4,
-                        use_multiprocessing=True, batch_size=BATCH_SIZE)
+def print_opinion(index_range, opinions):
+    index = tf.keras.datasets.imdb.get_word_index(path="imdb_word_index.json")
+    reverse_index = {value: key for key, value in index.items()}
+    mx = 0
+    for opinion in opinions[index_range]:
+        decoded = " ".join([reverse_index.get(i - 3, '') for i in opinion]).strip()
+        print(decoded)
+        l = len(decoded.split(' '))
+        if l > mx:
+            mx = l
+        print("Total len: ", len(decoded.split(' ')))
+    print(f"Max len: {mx}")
+
+
+def embedding_space_test(space: int):
+    layers = [SimpleRNN(units=64, activation=ACTIVATION), LSTM(units=64, activation=ACTIVATION)]
+    padding_max_len = 800
+    top_words = 500
+    skip_top = 20
+    x_train, y_train, x_test, y_test = load_data(padding_max_len, top_words=top_words, skip_top=skip_top)
+    with open(SAVE_PATH, 'r', encoding='utf-8') as file:
+        store = json.load(file)
+    for layer in layers:
+        model = make_rnn(space, padding_max_len, layer)
+        history = model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=EPOCHS, verbose='auto',
+                            workers=16, use_multiprocessing=True, validation_split=0.3)
+        store[f'Embedding_{space}_{layer.__class__.__name__}'] = history.history
+        with open(SAVE_PATH, 'w', encoding='utf-8') as file:
+            json.dump(store, file)
 
 
 if __name__ == '__main__':
-    main()
+    spaces = [2, 10, 50]
+    for space in spaces:
+        embedding_space_test(space)
+    # x_train, y_train, x_test, y_test = load_data(None, top_words=None, skip_top=0)
+    # print(x_train.shape)
+    # print_opinion(range(x_test.shape[1]), x_test)
     # d = tf.keras.datasets.imdb.get_word_index(path="imdb_word_index.json")
-    # print(d[max(d, key=lambda x: d[x])])
-    # print(d['the'])
-    # print(d['movie'])
-    # for i, (key, value) in enumerate(d.items()):
-    #     if value == 2:
-    #         print(key)
-
+    # for key, value in sorted(d.items(), key=lambda x: x[1]):
+    #     if value < 300:
+    #         print(f"{key}: {value}")
