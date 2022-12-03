@@ -72,10 +72,49 @@ def embedding_space_test(space: int):
             json.dump(store, file)
 
 
+def masking_test():
+    masking = [True, False]
+    layers = [SimpleRNN(units=64, activation=ACTIVATION), LSTM(units=64, activation=ACTIVATION)]
+    padding_max_len = 800
+    top_words = 500
+    skip_top = 20
+    x_train, y_train, x_test, y_test = load_data(padding_max_len, top_words=top_words, skip_top=skip_top)
+    with open(SAVE_PATH, 'r', encoding='utf-8') as file:
+        store = json.load(file)
+    for mask in masking:
+        for layer in layers:
+            model = make_rnn(20, padding_max_len, layer, mask=mask)
+            history = model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=EPOCHS, verbose='auto',
+                                workers=16, use_multiprocessing=True, validation_split=0.3)
+            store[f'Masking_{mask}_{layer.__class__.__name__}'] = history.history
+            with open(SAVE_PATH, 'w', encoding='utf-8') as file:
+                json.dump(store, file)
+
+
+def padding_test():
+    paddings = [100, 1000, 2494]
+    layers = [SimpleRNN(units=64, activation=ACTIVATION), LSTM(units=64, activation=ACTIVATION)]
+    top_words = 500
+    skip_top = 20
+    with open(SAVE_PATH, 'r', encoding='utf-8') as file:
+        store = json.load(file)
+    for padding in paddings:
+        x_train, y_train, x_test, y_test = load_data(padding, top_words=top_words, skip_top=skip_top)
+        for layer in layers:
+            model = make_rnn(20, padding, layer, mask=True)
+            history = model.fit(x_train, y_train, batch_size=BATCH_SIZE, epochs=EPOCHS, verbose='auto',
+                                workers=16, use_multiprocessing=True, validation_split=0.3)
+            store[f'Padding_{padding}_{layer.__class__.__name__}'] = history.history
+            with open(SAVE_PATH, 'w', encoding='utf-8') as file:
+                json.dump(store, file)
+
+
 if __name__ == '__main__':
-    spaces = [2, 10, 50]
-    for space in spaces:
-        embedding_space_test(space)
+    padding_test()
+    # masking_test()
+    # spaces = [2, 10, 50]
+    # for space in spaces:
+    #     embedding_space_test(space)
     # x_train, y_train, x_test, y_test = load_data(None, top_words=None, skip_top=0)
     # print(x_train.shape)
     # print_opinion(range(x_test.shape[1]), x_test)
