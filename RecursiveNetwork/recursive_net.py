@@ -92,8 +92,10 @@ def masking_test():
 
 
 def padding_test():
-    paddings = [100, 1000, 2494]
-    layers = [SimpleRNN(units=64, activation=ACTIVATION), LSTM(units=64, activation=ACTIVATION)]
+    # paddings = [100, 1000, 2494]
+    paddings = [2494]
+    # layers = [SimpleRNN(units=64, activation=ACTIVATION), LSTM(units=64, activation=ACTIVATION)]
+    layers = [LSTM(units=64, activation=ACTIVATION)]
     top_words = 500
     skip_top = 20
     with open(SAVE_PATH, 'r', encoding='utf-8') as file:
