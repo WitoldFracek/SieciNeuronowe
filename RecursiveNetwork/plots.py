@@ -150,7 +150,7 @@ def padding_results(metric: str, validation=False):
 if __name__ == '__main__':
     # embedding_test()
     # masking_test()
-    # padding_test()
+    padding_test()
 
 
 
